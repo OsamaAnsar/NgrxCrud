@@ -1,0 +1,50 @@
+<div >
+    <table class="table table-dark">
+      <thead>
+        <tr>
+          <th scope="col">Title</th>
+          <th scope="col">Description</th>
+          <th scope="col">Operations</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let task of tasks$ ">
+          <td>{{ task.title }}</td>
+          <td>{{ task.description }}</td>
+          <td>
+            <button (click)="showUpdateForm(task)" class="btn btn-primary" style="margin: 5px">Update</button>
+            <button (click)="deleteTask(task.id)" class="btn btn-danger" style="margin: 5px">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <div *ngIf="isUpdateActivated" style="margin-top: 50px; margin-left: 50px;">
+      <h4>Update Course</h4>
+      <form (ngSubmit)="updateTask(updateForm)" #updateForm="ngForm">
+        <div class="form-group">
+          <label for="name">Task Name</label>
+          <input
+            type="text"
+            id="title"
+            name="title"
+            class="form-control"
+            required
+            [(ngModel)]="taskToBeUpdated.title"
+            style="width: 400px"/>
+        </div>
+        <div class="form-group">
+          <label for="side">Description</label>
+          <input
+            type="text"
+            id="description"
+            name="description"
+            class="form-control"
+            required
+            [(ngModel)]="taskToBeUpdated.description"
+            style="width: 400px"/>
+        </div>
+        <button [disabled]="updateForm.invalid" class="btn btn-primary" type="submit">Update</button>
+      </form>
+    </div>
+  </div>

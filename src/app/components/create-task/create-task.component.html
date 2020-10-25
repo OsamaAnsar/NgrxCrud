@@ -1,0 +1,29 @@
+<form [formGroup]="taskForm">
+    <div class="form-group">
+      <label for="name">Task Name</label>
+      <input
+        type="text"
+        id="name"
+        name="name"
+        class="form-control"
+        formControlName="title" 
+        style="width: 400px"/>
+    </div>
+    <div class="form-group">
+      <label for="side">Description</label>
+      <input
+        type="text"
+        id="description"
+        name="description"
+        class="form-control"
+        required
+        formControlName="description"
+        style="width: 400px"/>
+        <input type="file"  name="attachFile" id="attachFile" class="inputfile"
+                (change)="attachFiles($event.target.files)">
+              Attach File
+            
+    </div>
+    <button  class="btn btn-primary" (click)="onSubmit(taskForm)" type="submit">Create</button>
+  </form>
+  {{taskForm.value | json}}
